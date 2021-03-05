@@ -1,6 +1,6 @@
 <h1>It's Burger Time!</h1>
 
-<h2>Burgers have not been eaten!</h2>
+<h2 class = "left">Ready to EAT!</h2>
 
 <ul>
   {{#each burgers}}
@@ -10,7 +10,7 @@
   {{/each}}
 </ul>
 
-<h2>You Ate These?!</h2>
+<h2 class = "right">Devoured!</h2>
 
 <ul>
   {{#each burgers}}
@@ -30,9 +30,11 @@
 
   <div class="form-group">
     <label for="devoured">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" id="devoured" checked> It's Burger Time!<br>
-    <input type="radio" name="devoured" value="0" id="not devoured"> No Burger for you 
+    <input type="radio" name="devoured" value="1" id="devoured"> Eat Your Creation! <br>
+    <input type="radio" name="devoured" value="0" id="not devoured"> Order Up! <br>
   </div>
+
+
 
   <button type="submit">Add Burger</button>
 </form>
