@@ -1,5 +1,8 @@
-<h1>It's Burger Time!</h1>
+<h1 class="title">It's Burger Time!</h1>
 
+<div class = "row align-items-start">
+
+<div class="col-6">
 <h2 class = "left">Ready to EAT!</h2>
 
 <ul>
@@ -9,8 +12,10 @@
   {{/unless}}
   {{/each}}
 </ul>
+</div>
 
-<h2 class = "right">Devoured!</h2>
+<div class="col-6">
+<h2 class="right">Devoured!</h2>
 
 <ul>
   {{#each burgers}}
@@ -19,7 +24,10 @@
   {{/if}}
   {{/each}}
 </ul>
+</div>
 
+<div class="row justify-content-center">
+<div class="col-4">
 <h2>Add a Burger</h2>
 <form id="create-form">
 
@@ -34,7 +42,9 @@
     <input type="radio" name="devoured" value="0" id="not devoured"> Order Up! <br>
   </div>
 
-
-
   <button type="submit">Add Burger</button>
 </form>
+</div>
+</div>
+
+</div>

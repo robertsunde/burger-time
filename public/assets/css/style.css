@@ -17,3 +17,15 @@ li {
 .form-group {
   margin-bottom: 5px;
 }
+
+.title {
+  text-align: center;
+}
+
+.left{
+  text-align: center;
+}
+
+.right{
+  text-align: center;
+}
