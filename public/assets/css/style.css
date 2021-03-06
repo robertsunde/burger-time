@@ -1,18 +1,13 @@
 li {
   padding: 5px;
   margin: 5px;
-  background: #faebd7;
+  background: rgb(43, 43, 43);
 }
 
 .label {
   font-weight: bold;
 }
 
-.create-update-form {
-  padding: 5px;
-  margin: 5px;
-  background: aqua;
-}
 
 .form-group {
   margin-bottom: 5px;
@@ -28,4 +23,25 @@ li {
 
 .right{
   text-align: center;
+}
+
+.center{
+text-align: center;
+
+}
+
+body {
+  background-color: rgb(43, 43, 43);
+  color: white;
+  stroke-width: 2px;
+  
+}
+
+.hamburger {
+  text-align: center;
+  align-content: center;
+}
+
+.list {
+  list-style-type: none
 }

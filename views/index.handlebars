@@ -1,11 +1,15 @@
-<h1 class="title">It's Burger Time!</h1>
+<div class="row">
+  <div class="col-12 hamburger"><h1 class="title">It's Burger Time!</h1>
+<i class="fas fa-hamburger fa-10x"></i>
+</div>
+</div>
 
 <div class = "row align-items-start">
 
-<div class="col-6">
+<div class="col-6 left">
 <h2 class = "left">Ready to EAT!</h2>
 
-<ul>
+<ul class="list">
   {{#each burgers}}
   {{#unless devoured}}
   {{> burgers/burger-block devoured=true}}
@@ -14,10 +18,10 @@
 </ul>
 </div>
 
-<div class="col-6">
+<div class="col-6 right">
 <h2 class="right">Devoured!</h2>
 
-<ul>
+<ul class ="list">
   {{#each burgers}}
   {{#if devoured}}
   {{> burgers/burger-block devoured=false}}
@@ -26,8 +30,8 @@
 </ul>
 </div>
 
-<div class="row justify-content-center">
-<div class="col-4">
+<div class="row center">
+<div class="col-12">
 <h2>Add a Burger</h2>
 <form id="create-form">
 
@@ -38,11 +42,11 @@
 
   <div class="form-group">
     <label for="devoured">Devoured?</label><br>
-    <input type="radio" name="devoured" value="1" id="devoured"> Eat Your Creation! <br>
+    <input type="radio" name="devoured" value="1" id="devoured"> Eat Your Creation Immediately! <br>
     <input type="radio" name="devoured" value="0" id="not devoured"> Order Up! <br>
   </div>
 
-  <button type="submit">Add Burger</button>
+  <button type="submit">Click Me Next!</button>
 </form>
 </div>
 </div>
