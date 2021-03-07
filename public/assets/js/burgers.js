@@ -1,20 +1,69 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
 document.addEventListener('DOMContentLoaded', (event) => {
     if (event) {
-      console.info('DOM loaded');
+      console.info('DOM has been loaded');
     }
   
-    // UPDATE
-    const changeDevouredBtns = document.querySelectorAll('.change-devoured');
-  
-    // Set up the event listener for the create button
+const createBurgerBtn = document.getElementById('create-form');
+const changeDevouredBtns = document.querySelectorAll('.change-devoured');
+const deleteBurgerBtns = document.querySelectorAll('.delete-burger');
+
+/////////////////////////////////////////////////////////////////////////////
+// Button for Creating a Burger
+/////////////////////////////////////////////////////////////////////////////
+
+if (createBurgerBtn) {
+  createBurgerBtn.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const newBurger = {
+      burger_name: document.getElementById('populate').value.trim(),
+      devoured: document.getElementById('devoured').checked,
+    };
+
+    fetch('/api/burgers', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify(newBurger),
+    }).then(() => {
+      document.getElementById('populate').value = '';
+      console.log('Created a new Burger!');
+      location.reload();
+    });
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Buttons for Deleting Burgers
+/////////////////////////////////////////////////////////////////////////////
+
+deleteBurgerBtns.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault()
+    const id = e.target.getAttribute('data-id');
+
+    fetch(`/api/burgers/${id}`, {
+      method: 'DELETE',
+    }).then((res) => {
+      console.log(res);
+      console.log(`Deleted burger: ${id}`);
+      location.reload();
+    });
+  });
+});
+
+//////////////////////////////////////////////////////////////////////////////
+// Buttons for Switching Burgers between true/false within burgers table
+/////////////////////////////////////////////////////////////////////////////
+    
     if (changeDevouredBtns) {
       changeDevouredBtns.forEach((button) => {
         button.addEventListener('click', (e) => {
-          // Grabs the id of the element that goes by the name, "id"
           const id = e.target.getAttribute('data-id');
           const newDevoured = e.target.getAttribute('data-newdevoured');
-  
           const newDevouredState = {
             devoured: newDevoured,
           };
@@ -26,76 +75,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
               'Content-Type': 'application/json',
             },
   
-            // make sure to serialize the JSON body
             body: JSON.stringify(newDevouredState),
           }).then((response) => {
-            // Check that the response is all good
-            // Reload the page so the user can see the new quote
             if (response.ok) {
-              console.log(`changed devoured to: ${newDevoured}`);
+              console.log(`Updated the devoured section of the "burgers" table to: ${newDevoured}`);
               location.reload('/');
             } else {
-              alert('something went wrong!');
+              alert('We have a problem!');
             }
           });
         });
       });
     }
   
-    // CREATE
-    const createBurgerBtn = document.getElementById('create-form');
-  
-    if (createBurgerBtn) {
-      createBurgerBtn.addEventListener('submit', (e) => {
-        e.preventDefault();
-  
-        // Grabs the value of the textarea that goes by the name, "quote"
-        const newBurger = {
-          burger_name: document.getElementById('ca').value.trim(),
-          devoured: document.getElementById('devoured').checked,
-        };
-  
-        // Send POST request to create a new quote
-        fetch('/api/burgers', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-  
-          // make sure to serialize the JSON body
-          body: JSON.stringify(newBurger),
-        }).then(() => {
-          // Empty the form
-          document.getElementById('ca').value = '';
-  
-          // Reload the page so the user can see the new quote
-          console.log('Created a new Burger!');
-          location.reload();
-        });
-      });
-    }
-  
-    // DELETE
-    const deleteBurgerBtns = document.querySelectorAll('.delete-burger');
-  
-    // Set up the event listeners for each delete button
-    deleteBurgerBtns.forEach((button) => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault()
-        const id = e.target.getAttribute('data-id');
-  
-        // Send the delete request
-        fetch(`/api/burgers/${id}`, {
-          method: 'DELETE',
-        }).then((res) => {
-          console.log(res);
-          console.log(`Deleted burger: ${id}`);
-  
-          // Reload the page
-          location.reload();
-        });
-      });
-    });
+
   });
   
