@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
       console.info('DOM has been loaded');
     }
   
-const createBurgerBtn = document.getElementById('create-form');
-const changeDevouredBtns = document.querySelectorAll('.change-devoured');
-const deleteBurgerBtns = document.querySelectorAll('.delete-burger');
+const createBurgerButton = document.getElementById('create-form');
+const updateDevouredBoolean = document.querySelectorAll('.change-devoured');
+const disposeOfCreationButton = document.querySelectorAll('.delete-burger');
 
 /////////////////////////////////////////////////////////////////////////////
 // Button for Creating a Burger
 /////////////////////////////////////////////////////////////////////////////
 
-if (createBurgerBtn) {
-  createBurgerBtn.addEventListener('submit', (e) => {
+if (createBurgerButton) {
+  createBurgerButton.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const newBurger = {
@@ -40,7 +40,7 @@ if (createBurgerBtn) {
 // Buttons for Deleting Burgers
 /////////////////////////////////////////////////////////////////////////////
 
-deleteBurgerBtns.forEach((button) => {
+disposeOfCreationButton.forEach((button) => {
   button.addEventListener('click', (e) => {
     e.preventDefault()
     const id = e.target.getAttribute('data-id');
@@ -49,7 +49,7 @@ deleteBurgerBtns.forEach((button) => {
       method: 'DELETE',
     }).then((res) => {
       console.log(res);
-      console.log(`Deleted burger: ${id}`);
+      console.log(`Removed from table: ${id}`);
       location.reload();
     });
   });
@@ -59,8 +59,8 @@ deleteBurgerBtns.forEach((button) => {
 // Buttons for Switching Burgers between true/false within burgers table
 /////////////////////////////////////////////////////////////////////////////
     
-    if (changeDevouredBtns) {
-      changeDevouredBtns.forEach((button) => {
+    if (updateDevouredBoolean) {
+      updateDevouredBoolean.forEach((button) => {
         button.addEventListener('click', (e) => {
           const id = e.target.getAttribute('data-id');
           const newDevoured = e.target.getAttribute('data-newdevoured');
