@@ -7,7 +7,7 @@
 <div class = "row align-items-start">
 
 <div class="col-6 left">
-<h2 class = "left">Ready to EAT!</h2>
+<h2 class = "left">Saving for Later!</h2>
 
 <ul class="list">
   {{#each burgers}}
@@ -19,7 +19,7 @@
 </div>
 
 <div class="col-6 right">
-<h2 class="right">The Devoured!</h2>
+<h2 class="right">The Eaten!</h2>
 
 <ul class ="list">
   {{#each burgers}}
@@ -32,7 +32,7 @@
 
 <div class="row center">
 <div class="col-12">
-<h2>Name Your Creation!</h2>
+<h2>Name Your Creation:</h2>
 <form id="create-form">
 
   <div class="form-group">
@@ -42,11 +42,11 @@
 
   <div class="form-group">
     <label class="container">
-    <input type="radio" checked="checked" name="radio" value="1" id="devoured"> Eat Immediately! <br>
+    <input type="radio" checked="checked" name="radio" value="0" id="not devoured"> Save for Later! <br>
     <span class="checkmark"></span>
     </label>
     <label class="container">
-    <input type="radio" name="radio" value="0" id="not devoured"> Save for Later! <br>
+    <input type="radio" name="radio" value="1" id="devoured"> Eat Immediately! <br>
     <span class="checkmark"></span>
     </label>
   </div>
