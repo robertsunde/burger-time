@@ -1,41 +1,10 @@
 const connection = require(`./connection`);
 
-const printQuestionMarks = (num) => {
-    const arr = [];
-  
-    for (let i = 0; i < num; i++) {
-      arr.push('?');
-    }
-  
-    return arr.toString();
-  };
-
-  const objToSql = (ob) => {
-    const arr = [];
-
-  
-  for (const key in ob) {
-    let value = ob[key];
-
-    if (Object.hasOwnProperty.call(ob, key)) {
-      if (typeof value === 'string' && value.indexOf(' ') >= 0) {
-        value = `'${value}'`;
-      }
-
-      arr.push(`${key}=${value}`);
-    }
-  }
-
-  // Translate array of strings to a single comma-separated string
-  return arr.toString();
-};
-
-
 
 const orm = {
     selectAll(tableInput, cb) {
-      const queryString = `SELECT * FROM ${tableInput};`;
-      connection.query(queryString, (err, result) => {
+      const mySQLdata = `SELECT * FROM ${tableInput};`;
+      connection.query(mySQLdata, (err, result) => {
         if (err) {
           throw err;
         }
@@ -47,18 +16,11 @@ const orm = {
 // sql function for adding to "burgers" table
 ///////////////////////////////////////////////////////////////////
     insertOne(table, cols, vals, cb) {
-      let queryString = `INSERT INTO ${table}`;
+      let mySQLdata = `INSERT INTO ${table} (` + cols.toString(); + `) VALUES (` + printQuestionMarks(vals.length) + `)`;
+   
+      console.log(mySQLdata);
   
-      queryString += ' (';
-      queryString += cols.toString();
-      queryString += ') ';
-      queryString += 'VALUES (';
-      queryString += printQuestionMarks(vals.length);
-      queryString += ') ';
-  
-      console.log(queryString);
-  
-      connection.query(queryString, vals, (err, result) => {
+      connection.query(mySQLdata, vals, (err, result) => {
         if (err) {
           throw err;
         }
@@ -72,11 +34,9 @@ const orm = {
 // sql function for deleting from "burgers" table
 ///////////////////////////////////////////////////////////////////
       deleteOne(table, condition, cb) {
-        let queryString = `DELETE FROM ${table}`;
-        queryString += ' WHERE ';
-        queryString += condition;
+        let mySQLdata = `DELETE FROM ${table} WHERE` + condition;
     
-        connection.query(queryString, (err, result) => {
+        connection.query(mySQLdata, (err, result) => {
           if (err) {
             throw err;
           }
@@ -86,17 +46,14 @@ const orm = {
       },
  
 
-      
+///////////////////////////////////////////////////////////////////
+// sql function for switching burgers from true/false from "burgers" table
+///////////////////////////////////////////////////////////////////
     updateOne(table, objColVals, condition, cb) {
-      let queryString = `UPDATE ${table}`;
+      let mySQLdata = `UPDATE ${table} SET` + objToSql(objColVals) + `WHERE` + condition;
   
-      queryString += ' SET ';
-      queryString += objToSql(objColVals);
-      queryString += ' WHERE ';
-      queryString += condition;
-  
-      console.log(queryString);
-      connection.query(queryString, (err, result) => {
+      console.log(mySQLdata);
+      connection.query(mySQLdata, (err, result) => {
         if (err) {
           throw err;
         }
@@ -105,4 +62,36 @@ const orm = {
       });
     },
   };
+
+
+
+  const printQuestionMarks = (num) => {
+    const question = [];
+  
+    for (let i = 0; i < num; i++) {
+      question.push('?');
+    }
+
+    return question.toString();
+  };
+
+  const objToSql = (ob) => {
+    const question = [];
+
+  
+  for (const key in ob) {
+    let value = ob[key];
+
+    if (Object.hasOwnProperty.call(ob, key)) {
+      if (typeof value === 'string' && value.indexOf(' ') >= 0) {
+        value = `'${value}'`;
+      }
+
+      question.push(`${key}=${value}`);
+    }
+  }
+
+  return question.toString();
+};
+
 module.exports = orm;

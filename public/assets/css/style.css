@@ -63,8 +63,8 @@ body {
 }
 
 li {
-  padding: 5px;
-  margin: 5px;
+  padding: 8px;
+  margin: 8px;
   background: rgb(43, 43, 43);
 }
 
@@ -102,9 +102,6 @@ li {
   background-color: #d6b600;
 }
 
-.form-group {
-  margin-bottom: 5px;
-}
 
 .container input:checked ~ .checkmark:after {
   display: block;

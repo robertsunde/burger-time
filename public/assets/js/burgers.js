@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if (event) {
       console.info('DOM has been loaded');
     }
-  
+
+//global variables
 const createBurgerButton = document.getElementById('create-form');
 const updateDevouredBoolean = document.querySelectorAll('.change-devoured');
 const disposeOfCreationButton = document.querySelectorAll('.delete-burger');

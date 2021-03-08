@@ -1,20 +1,21 @@
-// npm packages.
+//////////////////////////////////////////////////////////////////
+//CONTAINS CODE FOR LINKING JS TO MYSQL WORKBENCH
+//////////////////////////////////////////////////////////////////
 const mysql = require(`mysql`);
-
 const connection = mysql.createConnection({
 
-//  default port if not specified.
+// port used in mysql for burgers_db
 port: 3306,
 
-// database user.
+// username
 user: `root`,
 
-// database password.
+//password specific to this class for safety of data.
 password: `yourRootPassword`,
 database: `burgers_db`,
 });
 
-// create the connection
+//will display error when connecting, if any.
 connection.connect((err) => {
     if (err) {
       console.error(`error connecting: ${err.stack}`);
@@ -22,6 +23,6 @@ connection.connect((err) => {
     }
     console.log(`connected as id ${connection.threadId}`);
   });
-  
-  // export the connection
-  module.exports = connection;
+
+//module.exports here.
+module.exports = connection;
