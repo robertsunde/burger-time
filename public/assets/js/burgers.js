@@ -31,7 +31,6 @@ if (createBurgerButton) {
       body: JSON.stringify(newBurger),
     }).then(() => {
       document.getElementById('populate').value = '';
-      console.log('Created a new Burger!');
       location.reload();
     });
   });
@@ -48,16 +47,14 @@ disposeOfCreationButton.forEach((button) => {
 
     fetch(`/api/burgers/${id}`, {
       method: 'DELETE',
-    }).then((res) => {
-      console.log(res);
-      console.log(`Removed from table: ${id}`);
+    }).then(() => {
       location.reload();
     });
   });
 });
 
 //////////////////////////////////////////////////////////////////////////////
-// Buttons for Switching Burgers between true/false within burgers table
+// Buttons for Switching Burgers between true/false boolean value within burgers table
 /////////////////////////////////////////////////////////////////////////////
     
     if (updateDevouredBoolean) {
@@ -77,13 +74,8 @@ disposeOfCreationButton.forEach((button) => {
             },
   
             body: JSON.stringify(newDevouredState),
-          }).then((response) => {
-            if (response.ok) {
-              console.log(`Updated the devoured section of the "burgers" table to: ${newDevoured}`);
-              location.reload('/');
-            } else {
-              alert('We have a problem!');
-            }
+          }).then(() => {
+location.reload();
           });
         });
       });
