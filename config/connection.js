@@ -1,4 +1,3 @@
-//////////////////////////////////////////////////////////////////
 //CONTAINS CODE FOR LINKING JS TO MYSQL WORKBENCH
 //////////////////////////////////////////////////////////////////
 const mysql = require(`mysql`);
@@ -7,9 +6,7 @@ const connection = mysql.createConnection({
 // port used in mysql for burgers_db
 port: 3306,
 
-// username
-user: `root`,
-
+ user: `root`,
 //password specific to this class for safety of data.
 password: `yourRootPassword`,
 database: `burgers_db`,

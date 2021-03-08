@@ -33,6 +33,14 @@ router.post('/api/burgers', (req, res) => {
     burger.update(
       {
         devoured: req.body.devoured,
+      },
+      condition,
+      (result) => {
+        if (result.changedRows === 0) {
+          // If no rows were changed, then the ID must not exist, so 404
+          return res.status(404).end();
+        }
+        res.status(200).end();
       }
     );
   });
@@ -41,9 +49,17 @@ router.post('/api/burgers', (req, res) => {
 // GET DELETE
 ///////////////////////////////////////////
 
-  router.delete('/api/burgers/:id', (req, res) => {
-    const condition = `id = ${req.params.id}`;
+router.delete('/api/burgers/:id', (req, res) => {
+  const condition = `id = ${req.params.id}`;
+
+  burger.delete(condition, (result) => {
+    if (result.affectedRows === 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    }
+    res.status(200).end();
   });
+});
 
 
 module.exports = router;

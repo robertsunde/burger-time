@@ -1,6 +1,7 @@
 const connection = require(`./connection`);
 
 
+
 ///////////////////////////////////////////////////////////////////
 // contains orm functions and callbacks
 ///////////////////////////////////////////////////////////////////
@@ -20,11 +21,16 @@ const orm = {
   // sql function for adding to "burgers" table
   ///////////////////////////////////////////////////////////////////
   insertOne(table, cols, vals, cb) {
-    let mySQLdata = `INSERT INTO ${table} (` + cols.toString(); + `) VALUES (` + printQuestionMarks(vals.length) + `)`;
+    let queryString = `INSERT INTO ${table}`;
 
-    console.log(mySQLdata);
+    queryString += ' (';
+    queryString += cols.toString();
+    queryString += ') ';
+    queryString += 'VALUES (';
+    queryString += printQuestionMarks(vals.length);
+    queryString += ') ';
 
-    connection.query(mySQLdata, vals, (err, result) => {
+    connection.query(queryString, vals, (err, result) => {
       if (err) {
         throw err;
       }
@@ -38,7 +44,7 @@ const orm = {
   // sql function for deleting from "burgers" table
   ///////////////////////////////////////////////////////////////////
   deleteOne(table, condition, cb) {
-    let mySQLdata = `DELETE FROM ${table} WHERE` + condition;
+    let mySQLdata = `DELETE FROM ${table} WHERE ` + condition;
 
     connection.query(mySQLdata, (err, result) => {
       if (err) {
@@ -54,7 +60,7 @@ const orm = {
   // sql function for switching burgers from true/false from "burgers" table
   ///////////////////////////////////////////////////////////////////
   updateOne(table, objColVals, condition, cb) {
-    let mySQLdata = `UPDATE ${table} SET` + objToSql(objColVals) + `WHERE` + condition;
+    let mySQLdata = `UPDATE ${table} SET ` + objToSql(objColVals) + ` WHERE ` + condition;
 
     console.log(mySQLdata);
     connection.query(mySQLdata, (err, result) => {
@@ -66,6 +72,7 @@ const orm = {
     });
   },
 };
+
 
 
 
