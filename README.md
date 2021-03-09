@@ -5,6 +5,7 @@
 <br/>
 ## Description <br/>
 This application is used to log burgers created by the user. The created burgers will populate a table in MySQL workbench within a main "burgers_db" database. <br/>
+![Burger-Application-Live](https://user-images.githubusercontent.com/73792987/110415556-14da5200-8060-11eb-8155-c31c64d7dc56.png) <br/>
 <br/>
 <br/>
 ## Table of Contents <br/>
@@ -17,7 +18,7 @@ This application is used to log burgers created by the user. The created burgers
 <br/>
 <br/>
 ## Installation <br/>
-This application functions through Heroku, and requires no client-side downloads or installation. <br/>
+This application functions through Heroku, and requires no client-side downloads or installation. Click the link to start the application! https://its-burger-time-application.herokuapp.com/<br/>
 <br/>
 <br/>
 ## Usage <br/>

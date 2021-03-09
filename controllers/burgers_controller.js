@@ -33,13 +33,6 @@ router.post('/api/burgers', (req, res) => {
     burger.update(
       {
         devoured: req.body.devoured,
-      },
-      condition,
-      (result) => {
-        if (result.changedRows === 0) {
-          return res.status(404).end();
-        }
-        res.status(200).end();
       }
     );
   });
@@ -50,13 +43,6 @@ router.post('/api/burgers', (req, res) => {
 
 router.delete('/api/burgers/:id', (req, res) => {
   const condition = `id = ${req.params.id}`;
-
-  burger.delete(condition, (result) => {
-    if (result.affectedRows === 0) {
-      return res.status(404).end();
-    }
-    res.status(200).end();
-  });
 });
 
 
